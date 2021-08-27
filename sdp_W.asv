@@ -1,0 +1,14 @@
+function Y_calc = sdp_W(W,n)
+    cvx_begin
+    variable Y(n,n) semidefinite;
+    maximize( trace(weight_matrix*Y) );
+    subject to
+        Y = transpose(Y);
+        for i = 1:n
+            Y(i,i) = 1;
+        end
+        dot(Y,ones(1,n)) = 0;
+    cvx_end
+    Y_calc = 
+end
+
